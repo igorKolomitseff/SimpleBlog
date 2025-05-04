@@ -59,10 +59,9 @@ python3 manage.py runserver
 * [Swagger](http://127.0.0.1:8000/api/schema/swagger-ui/)
 * [ReDoc](http://127.0.0.1:8000/api/schema/redoc/)
 
-<!-- Документация без развёртывания проекта:
+Документация без развёртывания проекта:
 
-[Swagger]()
-[ReDoc]() -->
+[Техническая документация к API](https://github.com/igorKolomitseff/SimpleBlog/blob/main/docs/openapi.yaml)
 
 ### Автор
 
