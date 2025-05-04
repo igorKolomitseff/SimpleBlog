@@ -14,7 +14,7 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ArticleBaseSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True)
+    author = UserReadSerializer(read_only=True)
 
     class Meta:
         model = Article
@@ -30,18 +30,18 @@ class ArticleBaseSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'created_at')
 
 
-class ArticleSerializer(ArticleBaseSerializer):
+class ArticleReadSerializer(ArticleBaseSerializer):
     tags = TagSerializer(many=True)
 
 
-class ArticleWriteSerializer(ArticleSerializer):
+class ArticleWriteSerializer(ArticleBaseSerializer):
     tags = serializers.PrimaryKeyRelatedField(
         many=True,
         queryset=Tag.objects.all()
     )
 
     def to_representation(self, instance):
-        return ArticleSerializer(
+        return ArticleReadSerializer(
             context=self.context
         ).to_representation(
             instance
