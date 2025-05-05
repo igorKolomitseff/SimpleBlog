@@ -1,0 +1,38 @@
+<div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <small>
+            {% if not article.is_published %}
+              <p class="text-danger">Пост снят с публикации админом</p>
+            {% endif %}
+            {{ article.created_at|date:"d E Y, H:i" }}
+            <br>
+            От автора @{{ article.author.username }}
+          </small>
+        </h6>
+        <p class="card-text">{{ article.content|linebreaksbr|truncatewords:10 }}</p>
+        <small>
+          <p>Теги:
+            {% for tag in article.tags.all %}
+              {{ tag.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+              Без тегов
+            {% endfor %}
+          </p>
+        </small>
+        <a 
+          href="{% url 'blog:article_detail' article.id %}" 
+          class="card-link"
+          >
+          Читать полный текст
+        </a>
+        <a 
+          href="{% url 'blog:article_detail' article.id %}" 
+          class="card-link text-muted"
+          >
+        </a>
+      </div>
+    </div>
+  </div>

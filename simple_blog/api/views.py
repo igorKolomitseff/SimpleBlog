@@ -19,10 +19,10 @@ class TagViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.select_related(
-            'author'
-        ).prefetch_related(
-            'tags'
-        )
+        'author'
+    ).prefetch_related(
+        'tags'
+    )
     permission_classes = (IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly)
     pagination_class = BasePagination
     filter_backends = (DjangoFilterBackend,)

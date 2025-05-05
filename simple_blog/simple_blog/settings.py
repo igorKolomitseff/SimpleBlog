@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'djoser',
+    'debug_toolbar',
     'drf_spectacular',
+    'django_bootstrap5',
     'api.apps.ApiConfig',
     'blog.apps.BlogConfig',
 ]
@@ -51,17 +53,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'simple_blog.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -156,3 +166,8 @@ ARTICLE_TITLE_MAX_LENGTH = 100
 TEXT_MAX_LENGTH = 50
 
 PAGE_SIZE = 5
+
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'blog:index'
