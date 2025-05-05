@@ -53,6 +53,8 @@ python3 manage.py createsuperuser
 python3 manage.py runserver
 ```
 
+Доступ к административной панели: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
 ## Документация API
 
 Техническая документация к API доступна при запущенном проекте по ссылке:
